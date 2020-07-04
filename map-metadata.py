@@ -48,7 +48,7 @@ output_dir = os.path.abspath(output_dir)
 
 
 # Loop through input folder's contents
-for song_name in os.listdir(input_directory):
+for song_name in os.listdir(input_dir):
 	# Find matches and process them
 	match = song_regex.match(song_name)
 	if match != None:
