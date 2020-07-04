@@ -54,4 +54,4 @@ for song_name in os.listdir(input_dir):
 	if match != None:
 		print('Processing {}...'.format(song_name))
 		artists, title = get_artists_and_title(match)
-		print(artist, title)
+		print(artists, title)
