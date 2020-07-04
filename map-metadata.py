@@ -5,6 +5,14 @@ import subprocess
 import sys
 
 
+def get_artist_and_title(match):
+	"""Returns a tuple of title and artist in specified name"""
+	# This will correctly display artists in windows
+	artists = match.group(1).replace(', ', ';')
+	title = match.group(2)
+	return (artist, title)
+
+
 # Regexp for files in format "artist - title.mp3"
 song_regex = re.compile(r'(.+) - (.+)\.mp3')
 
@@ -39,5 +47,11 @@ input_dir = os.path.abspath(input_dir)
 output_dir = os.path.abspath(output_dir)
 
 
-# Loop through folders contents
-	# Match file regex and process the file
+# Loop through input folder's contents
+for song_name in os.listdir(input_directory):
+	# Find matches and process them
+	match = song_regex.match(song_name)
+	if match != None:
+		print('Processing {}...'.format(song_name))
+		artists, title = get_artists_and_title(match)
+		print(artist, title)
