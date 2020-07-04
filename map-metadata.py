@@ -5,12 +5,12 @@ import subprocess
 import sys
 
 
-def get_artist_and_title(match):
-	"""Returns a tuple of title and artist in specified name"""
-	# This will correctly display artists in windows
+def get_artists_and_title(match):
+	"""Returns a tuple of artists and title in specified name"""
+	# This will correctly display multiple artists in windows
 	artists = match.group(1).replace(', ', ';')
 	title = match.group(2)
-	return (artist, title)
+	return (artists, title)
 
 
 # Regexp for files in format "artist - title.mp3"
