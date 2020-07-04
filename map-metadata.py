@@ -53,3 +53,12 @@ for song_name in os.listdir(input_dir):
 	match = song_regex.match(song_name)
 	if match != None:
 		artists, title = get_artists_and_title(match)
+		# Process the file
+		subprocess.run([
+			'ffmpeg', '-y',
+			'-i', os.path.join(input_directory, song_name),
+			'-metadata', 'artist={}'.format(artists),
+			'-metadata', 'title={}'.format(title),
+			'-c', 'copy',
+			os.path.join(output_dir, song_name)
+		])
