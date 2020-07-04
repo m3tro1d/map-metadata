@@ -41,7 +41,7 @@ if not os.path.exists(input_dir):
 # Check output directory
 if not os.path.exists(output_dir):
 	print("Specified output directory '{}' does not exist, creating...".format(output_dir))
-	os.mkdir(output_directory)
+	os.mkdir(output_dir)
 # Make them nice
 input_dir = os.path.abspath(input_dir)
 output_dir = os.path.abspath(output_dir)
@@ -56,7 +56,7 @@ for song_name in os.listdir(input_dir):
 		# Process the file
 		subprocess.run([
 			'ffmpeg', '-y',
-			'-i', os.path.join(input_directory, song_name),
+			'-i', os.path.join(input_dir, song_name),
 			'-metadata', 'artist={}'.format(artists),
 			'-metadata', 'title={}'.format(title),
 			'-c', 'copy',
