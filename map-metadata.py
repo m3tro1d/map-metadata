@@ -52,6 +52,4 @@ for song_name in os.listdir(input_dir):
 	# Find matches and process them
 	match = song_regex.match(song_name)
 	if match != None:
-		print('Processing {}...'.format(song_name))
 		artists, title = get_artists_and_title(match)
-		print(artists, title)
