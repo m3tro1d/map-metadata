@@ -20,7 +20,7 @@ song_regex = re.compile(r'(.+) - (.+)\.mp3')
 # Parse input parameters
 parser = argparse.ArgumentParser(
     description="""This script maps metadata from files' names, so you don't
-have to enter it manually.""")
+    have to enter it manually.""")
 
 parser.add_argument("input_dir",
     help="directory to grab mp3 files from")
