@@ -40,7 +40,7 @@ if not os.path.exists(input_dir):
     sys.exit(1)
 # Check output directory
 if not os.path.exists(output_dir):
-    print("Specified output directory '{}' does not exist, creating...".format(output_dir))
+    print("Creating '{}'...".format(output_dir))
     os.mkdir(output_dir)
 # Make them nice
 input_dir = os.path.abspath(input_dir)
