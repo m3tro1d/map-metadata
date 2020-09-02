@@ -23,14 +23,14 @@ parser = argparse.ArgumentParser(
     have to enter it manually.""")
 
 parser.add_argument("input_dir",
-    help="directory to grab mp3 files from")
+                    help="directory to grab mp3 files from")
 
 parser.add_argument("output_dir",
-    help="directory to place processed files to")
+                    help="directory to place processed files to")
 
 args = parser.parse_args()
-input_dir = args.input_dir
-output_dir = args.output_dir
+input_dir = os.path.abspath(args.input_dir)
+output_dir = os.path.abspath(args.output_dir)
 
 
 # Process input directories
@@ -42,16 +42,13 @@ if not os.path.exists(input_dir):
 if not os.path.exists(output_dir):
     print("Creating '{}'...".format(output_dir))
     os.mkdir(output_dir)
-# Make them nice
-input_dir = os.path.abspath(input_dir)
-output_dir = os.path.abspath(output_dir)
 
 
 # Loop through input folder's contents
 for song_name in os.listdir(input_dir):
     # Find matches and process them
     match = song_regex.match(song_name)
-    if match != None:
+    if match:
         artists, title = get_artists_and_title(match)
         # Process the file
         subprocess.run([
