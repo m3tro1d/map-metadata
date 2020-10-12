@@ -16,3 +16,5 @@ positional arguments:
 optional arguments:
   -h, --help  show this help message and exit
 ```
+
+By default it will process files named as `artist - title.mp3` and write the corresponding metadata.
