@@ -94,16 +94,19 @@ def main():
         # Find matches and process them
         match = SONG_REGEX.match(song_name)
         if match:
+            print(f"+ {song_name}")
             artists, title = get_artists_and_title(match)
-            # Process the file
-            subprocess.run([
+            cmd = [
                 'ffmpeg', '-y',
                 '-i', os.path.join(args.input_dir, song_name),
                 '-metadata', 'artist={}'.format(artists),
                 '-metadata', 'title={}'.format(title),
                 '-c', 'copy',
                 os.path.join(args.output_dir, song_name)
-            ])
+            ]
+            subprocess.run(cmd, check=False,
+                           stdout=subprocess.DEVNULL,
+                           stderr=subprocess.DEVNULL)
 
 # Entry point
 if __name__ == "__main__":
