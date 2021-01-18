@@ -67,6 +67,7 @@ def valid_output(string):
     """Checks if string is a valid output directory and creates it if needed"""
     path = os.path.abspath(string)
     if not os.path.isdir(path):
+        print(f"Creating {path}")
         os.mkdir(path)
     return path
 
@@ -81,18 +82,6 @@ def parse_arguments():
 
     args = parser.parse_args()
     return args
-
-
-def check_dirs(input_dir, output_dir):
-    """Checks if the dirs are presented & creates output_dir if necessary"""
-    # Check input directory
-    if not os.path.exists(input_dir):
-        print("Directory '{}' does not exist, exiting.".format(input_dir))
-        sys.exit(1)
-    # Check output directory
-    if not os.path.exists(output_dir):
-        print("Creating '{}'...".format(output_dir))
-        os.mkdir(output_dir)
 
 
 def process_files(input_dir, output_dir):
@@ -119,9 +108,6 @@ def process_files(input_dir, output_dir):
 
 def main():
     """Main function"""
-    # Check the directories
-    check_dirs(args.input_dir, args.output_dir)
-    # Process the songs
     process_files(args.input_dir, args.output_dir)
 
 # Entry point
