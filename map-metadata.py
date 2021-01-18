@@ -63,13 +63,21 @@ def valid_input(string):
     return path
 
 
+def valid_output(string):
+    """Checks if string is a valid output directory and creates it if needed"""
+    path = os.path.abspath(string)
+    if not os.path.isdir(path):
+        os.mkdir(path)
+    return path
+
+
 def parse_arguments():
     """Processes the arguments"""
     parser = CustomArgumentParser(usage="%(prog)s [OPTIONS] INPUT OUTPUT")
 
     parser.add_argument("input_dir", type=valid_input)
 
-    parser.add_argument("output_dir")
+    parser.add_argument("output_dir", type=valid_output)
 
     args = parser.parse_args()
     return args
