@@ -7,14 +7,16 @@ This is a simple program that simplifies metadata mapping for mp3 files.
 
 # Usage
 ```
-usage: map-metadata.py [-h] input_dir output_dir
+Usage: map-metadata.py [OPTIONS] INPUT OUTPUT
 
-positional arguments:
-  input_dir   directory to grab mp3 files from
-  output_dir  directory to place processed files to
+INPUT:
+  Directory containing files for mapping
 
-optional arguments:
-  -h, --help  show this help message and exit
+OUTPUT:
+  Directory to place the processed files in
+
+Options:
+  -h,  --help     show help
 ```
 
 By default it will process files named as `artist - title.mp3` and write the corresponding metadata.
