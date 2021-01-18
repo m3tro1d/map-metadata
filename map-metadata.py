@@ -51,11 +51,23 @@ def get_artists_and_title(match):
     return (artists, title)
 
 
+def valid_input(string):
+    """Checks if string is a valid input directory"""
+    path = os.path.abspath(string)
+    if not os.path.exists(path):
+        error = f"Directory does not exists: {path}"
+        raise argparse.ArgumentTypeError(error)
+    if not os.path.isdir(path):
+        error = f"Not a directory: {path}"
+        raise argparse.ArgumentTypeError(error)
+    return path
+
+
 def parse_arguments():
     """Processes the arguments"""
     parser = CustomArgumentParser(usage="%(prog)s [OPTIONS] INPUT OUTPUT")
 
-    parser.add_argument("input_dir")
+    parser.add_argument("input_dir", type=valid_input)
 
     parser.add_argument("output_dir")
 
