@@ -1,3 +1,4 @@
+from textwrap import dedent
 import argparse
 import os
 import re
@@ -15,7 +16,28 @@ SONG_REGEX = re.compile(r'(.+) - (.+)\.mp3')
 # Classes
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+class CustomArgumentParser(argparse.ArgumentParser):
+    """Override ArgumentParser's help message"""
+    def format_help(self):
+        help_text = dedent(f"""\
+        map-metadata is a script for quickly mapping mp3 metadata
+        with ffmpeg.
 
+        Usage: {self.prog} [OPTIONS] INPUT OUTPUT
+
+        INPUT:
+          Directory containing files for mapping
+
+        OUTPUT:
+          Directory to place the processed files in
+
+        Options:
+          -h,  --help     show help
+
+        For more information visit:
+        https://github.com/m3tro1d/map-metadata
+        """)
+        return help_text
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # Functions
@@ -31,14 +53,14 @@ def get_artists_and_title(match):
 
 def parse_arguments():
     """Processes the arguments"""
-    parser = argparse.ArgumentParser(
-        description="""This script maps metadata from files' names, so you don't
-        have to enter it manually.""")
-    parser.add_argument("input_dir",
-                        help="directory to grab mp3 files from")
-    parser.add_argument("output_dir",
-                        help="directory to place processed files to")
-    return parser.parse_args()
+    parser = CustomArgumentParser(usage="%(prog)s [OPTIONS] INPUT OUTPUT")
+
+    parser.add_argument("input_dir")
+
+    parser.add_argument("output_dir")
+
+    args = parser.parse_args()
+    return args
 
 
 def check_dirs(input_dir, output_dir):
