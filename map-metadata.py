@@ -114,4 +114,8 @@ def main():
 if __name__ == "__main__":
     args = parse_arguments()
 
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\nUser interrupt", file=sys.stderr)
+        sys.exit(1)
