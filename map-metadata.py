@@ -43,6 +43,17 @@ class CustomArgumentParser(argparse.ArgumentParser):
 # Functions
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+def check_requirements():
+    """Checks for the needed software"""
+    try:
+        subprocess.run(["ffmpeg"], check=False,
+                       stdout=subprocess.DEVNULL,
+                       stderr=subprocess.DEVNULL)
+    except FileNotFoundError:
+        print(f"Error: ffmpeg not found!", file=sys.stderr)
+        sys.exit(1)
+
+
 def get_artists_and_title(match):
     """Returns a tuple of artists and title in specified name"""
     # This will correctly display multiple artists in windows
@@ -110,6 +121,7 @@ def main():
 
 # Entry point
 if __name__ == "__main__":
+    check_requirements()
     args = parse_arguments()
 
     try:
