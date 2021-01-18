@@ -99,17 +99,13 @@ def process_files(input_dir, output_dir):
 
 def main():
     """Main function"""
-    # Get the input arguments
-    args = parse_arguments()
-    input_dir = os.path.realpath(args.input_dir)
-    output_dir = os.path.realpath(args.output_dir)
-
     # Check the directories
-    check_dirs(input_dir, output_dir)
-
+    check_dirs(args.input_dir, args.output_dir)
     # Process the songs
-    process_files(input_dir, output_dir)
+    process_files(args.input_dir, args.output_dir)
 
 # Entry point
 if __name__ == "__main__":
+    args = parse_arguments()
+
     main()
