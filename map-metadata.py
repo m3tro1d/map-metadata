@@ -83,11 +83,14 @@ def parse_arguments():
     args = parser.parse_args()
     return args
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Main script
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-def process_files(input_dir, output_dir):
-    """Processes the files"""
+def main():
+    """Main function"""
     # Loop through input folder's contents
-    for song_name in os.listdir(input_dir):
+    for song_name in os.listdir(args.input_dir):
         # Find matches and process them
         match = SONG_REGEX.match(song_name)
         if match:
@@ -95,20 +98,12 @@ def process_files(input_dir, output_dir):
             # Process the file
             subprocess.run([
                 'ffmpeg', '-y',
-                '-i', os.path.join(input_dir, song_name),
+                '-i', os.path.join(args.input_dir, song_name),
                 '-metadata', 'artist={}'.format(artists),
                 '-metadata', 'title={}'.format(title),
                 '-c', 'copy',
-                os.path.join(output_dir, song_name)
+                os.path.join(args.output_dir, song_name)
             ])
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# Main script
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-def main():
-    """Main function"""
-    process_files(args.input_dir, args.output_dir)
 
 # Entry point
 if __name__ == "__main__":
