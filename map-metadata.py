@@ -4,10 +4,22 @@ import re
 import subprocess
 import sys
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Globals
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 # Regexp for files in format "artist - title.mp3"
 SONG_REGEX = re.compile(r'(.+) - (.+)\.mp3')
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Classes
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Functions
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 def get_artists_and_title(match):
     """Returns a tuple of artists and title in specified name"""
@@ -59,9 +71,12 @@ def process_files(input_dir, output_dir):
                 os.path.join(output_dir, song_name)
             ])
 
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Main script
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 def main():
-    """Entry point of the script"""
+    """Main function"""
     # Get the input arguments
     args = parse_arguments()
     input_dir = os.path.realpath(args.input_dir)
